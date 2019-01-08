@@ -28,7 +28,7 @@ namespace TicTacToe.AcceptanceTest
         {
             var boardGateway = new InMemoryBoardGateway(); 
             
-            var placePiece = new PlacePiece(boardGateway);
+            var placePiece = new PlacePiece(boardGateway, boardGateway);
             placePiece.Execute(1, 0, 0);
             
             var seeBoard = new SeeBoard(boardGateway);
@@ -39,6 +39,29 @@ namespace TicTacToe.AcceptanceTest
                 {
                     new int?[] {1, null, null},
                     new int?[] {null, null, null},
+                    new int?[] {null, null, null}
+                },
+                response.Board
+            );
+        }
+        
+        [Test]
+        public void GivenAGameWithTwoPiecesPlaced_WhenISeeTheBoard_ThenTheBoardIsUpdatedCorrectly()
+        {
+            var boardGateway = new InMemoryBoardGateway(); 
+            
+            var placePiece = new PlacePiece(boardGateway, boardGateway);
+            placePiece.Execute(1, 0, 0);
+            placePiece.Execute(1, 0, 1);
+            
+            var seeBoard = new SeeBoard(boardGateway);
+            var response = seeBoard.Execute();
+           
+            Assert.AreEqual(
+                new int?[][]
+                {
+                    new int?[] {1, null, null},
+                    new int?[] {1, null, null},
                     new int?[] {null, null, null}
                 },
                 response.Board

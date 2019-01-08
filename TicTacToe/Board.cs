@@ -11,7 +11,7 @@ namespace TicTacToe
         
         public int? PieceAt(int x, int y)
         {
-            return Pieces[x][y];
+            return Pieces[y][x];
         }
     }
 }
