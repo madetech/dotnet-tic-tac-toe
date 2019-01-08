@@ -12,15 +12,7 @@ namespace TicTacToe.AcceptanceTest
             var seeBoard = new SeeBoard(boardGateway);
             var response = seeBoard.Execute();
            
-            Assert.AreEqual(
-                new int?[][]
-                {
-                    new int?[] {null, null, null},
-                    new int?[] {null, null, null},
-                    new int?[] {null, null, null}
-                },
-                response.Board
-            );
+            Assert.AreEqual(new int?[3, 3],response.Board);
         }
 
         [Test]
@@ -35,11 +27,11 @@ namespace TicTacToe.AcceptanceTest
             var response = seeBoard.Execute();
            
             Assert.AreEqual(
-                new int?[][]
+                new int?[,]
                 {
-                    new int?[] {1, null, null},
-                    new int?[] {null, null, null},
-                    new int?[] {null, null, null}
+                    {1, null, null},
+                    {null, null, null},
+                    {null, null, null}
                 },
                 response.Board
             );
@@ -58,11 +50,11 @@ namespace TicTacToe.AcceptanceTest
             var response = seeBoard.Execute();
            
             Assert.AreEqual(
-                new int?[][]
+                new int?[,]
                 {
-                    new int?[] {1, null, null},
-                    new int?[] {1, null, null},
-                    new int?[] {null, null, null}
+                    {1, null, null},
+                    {1, null, null},
+                    {null, null, null}
                 },
                 response.Board
             );
@@ -71,11 +63,7 @@ namespace TicTacToe.AcceptanceTest
 
     public class InMemoryBoardGateway : IBoardReader, IBoardWriter
     {
-        private Board _board = new Board(new []{
-            new int?[] {null, null, null},
-            new int?[] {null, null, null},
-            new int?[] {null, null, null}
-        });
+        private Board _board = new Board();
 
         public void Write(Board board)
         {

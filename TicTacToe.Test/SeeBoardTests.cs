@@ -12,15 +12,7 @@ namespace TicTacToe.Test
             var seeBoard = new SeeBoard(boardGateway);
             var response = seeBoard.Execute();
            
-            Assert.AreEqual(
-                new int?[][]
-                {
-                    new int?[] {null, null, null},
-                    new int?[] {null, null, null},
-                    new int?[] {null, null, null}
-                },
-                response.Board
-            );
+            Assert.AreEqual(new int?[3, 3],response.Board);
         }
 
         [Test]
@@ -32,11 +24,11 @@ namespace TicTacToe.Test
             var response = seeBoard.Execute();
            
             Assert.AreEqual(
-                new int?[][]
+                new int?[,]
                 {
-                    new int?[] {null, null, null},
-                    new int?[] {null, 1, null},
-                    new int?[] {null, null, null}
+                    {null, null, null},
+                    {null, 1, null},
+                    {null, null, null}
                 },
                 response.Board
             );
@@ -48,11 +40,7 @@ namespace TicTacToe.Test
     {
         public Board Fetch()
         {
-            return new Board(new []{
-                new int?[] {null, null, null},
-                new int?[] {null, 1, null},
-                new int?[] {null, null, null}
-            });
+            return new Board().NewBoardWithPieceAt(1, 1, 1);
         }
     }
 
@@ -60,11 +48,7 @@ namespace TicTacToe.Test
     {
         public Board Fetch()
         {
-            return new Board(new []{
-                new int?[] {null, null, null},
-                new int?[] {null, null, null},
-                new int?[] {null, null, null}
-            });
+            return new Board();
         }
     }
 }

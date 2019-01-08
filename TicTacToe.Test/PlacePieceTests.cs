@@ -43,31 +43,37 @@ namespace TicTacToe.Test
             Assert.AreEqual(1, spy.LastBoard.PieceAt(0, 0));
             Assert.AreEqual(0, spy.LastBoard.PieceAt(1, 0));
         }
+        
+        [Test]
+        public void DoesNotMutateTheBoard()
+        {
+            var spy = new BoardWriterSpy();
+            var boardReaderStub = new PieceSetOriginBoardReaderStub();
+            var originalBoard = boardReaderStub.Fetch();
+            
+            var placePiece = new PlacePiece(spy, boardReaderStub);
+            
+            placePiece.Execute(0, 1, 0);
+            
+            Assert.IsNull(originalBoard.PieceAt(1, 0));
+        }
     }
 
     public class EmptyBoardReaderStub : IBoardReader
     {
         public Board Fetch()
         {
-            return new Board(new []
-            {
-                new int?[3],
-                new int?[3],
-                new int?[3]
-            });
+            return new Board();
         }
     }
     
     public class PieceSetOriginBoardReaderStub : IBoardReader
     {
+        private readonly Board board = new Board().NewBoardWithPieceAt(1, 0, 0);
+
         public Board Fetch()
         {
-            return new Board(new []
-            {
-                new int?[] { 1, null, null },
-                new int?[3],
-                new int?[3]
-            });
+            return board;
         }
     }
     

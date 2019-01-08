@@ -2,16 +2,29 @@ namespace TicTacToe
 {
     public class Board
     {
-        public readonly int?[][] Pieces;
+        public readonly int?[,] Pieces;
 
-        public Board(int? [][] pieces)
+        public Board()
+        {
+            Pieces = new int?[3, 3];
+        }
+        
+        private Board(int?[,] pieces)
         {
             Pieces = pieces;
         }
         
         public int? PieceAt(int x, int y)
         {
-            return Pieces[y][x];
+            return Pieces[y, x];
+        }
+
+        public Board NewBoardWithPieceAt(int pieceType, int x, int y)
+        {
+            var pieces = Pieces.Clone() as int? [,];
+            pieces[y, x] = pieceType;
+
+            return new Board(pieces);
         }
     }
 }
