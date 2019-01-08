@@ -1,6 +1,4 @@
-using System;
-
-namespace TicTacToe.AcceptanceTest
+namespace TicTacToe
 {
     public class PlacePiece
     {
@@ -24,11 +22,5 @@ namespace TicTacToe.AcceptanceTest
             
             _boardWriter.Write(new Board(pieces));
         }
-    }
-
-    [AttributeUsage(AttributeTargets.Method, Inherited = false)]
-    public class CustomAttribute : Attribute
-    {
-        
     }
 }

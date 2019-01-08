@@ -12,9 +12,6 @@ namespace TicTacToe
         public SeeBoardResponse Execute()
         {
             var board = _boardReader.Fetch();
-            
-            
-            
             var response = new SeeBoardResponse
             {
                 Board = board.Pieces

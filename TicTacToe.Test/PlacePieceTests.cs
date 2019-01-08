@@ -1,7 +1,4 @@
-using System;
-using System.Xml.Linq;
 using NUnit.Framework;
-using TicTacToe.AcceptanceTest;
 
 namespace TicTacToe.Test
 {
