@@ -1,0 +1,17 @@
+/Users/alessandro/RiderProjects/TicTacToe/TicTacToe.AcceptanceTest/bin/Debug/netcoreapp2.2/NUnit3.TestAdapter.dll
+/Users/alessandro/RiderProjects/TicTacToe/TicTacToe.AcceptanceTest/bin/Debug/netcoreapp2.2/NUnit3.TestAdapter.pdb
+/Users/alessandro/RiderProjects/TicTacToe/TicTacToe.AcceptanceTest/bin/Debug/netcoreapp2.2/nunit.engine.netstandard.dll
+/Users/alessandro/RiderProjects/TicTacToe/TicTacToe.AcceptanceTest/bin/Debug/netcoreapp2.2/TicTacToe.AcceptanceTest.deps.json
+/Users/alessandro/RiderProjects/TicTacToe/TicTacToe.AcceptanceTest/bin/Debug/netcoreapp2.2/TicTacToe.AcceptanceTest.runtimeconfig.json
+/Users/alessandro/RiderProjects/TicTacToe/TicTacToe.AcceptanceTest/bin/Debug/netcoreapp2.2/TicTacToe.AcceptanceTest.runtimeconfig.dev.json
+/Users/alessandro/RiderProjects/TicTacToe/TicTacToe.AcceptanceTest/bin/Debug/netcoreapp2.2/TicTacToe.AcceptanceTest.dll
+/Users/alessandro/RiderProjects/TicTacToe/TicTacToe.AcceptanceTest/bin/Debug/netcoreapp2.2/TicTacToe.AcceptanceTest.pdb
+/Users/alessandro/RiderProjects/TicTacToe/TicTacToe.AcceptanceTest/bin/Debug/netcoreapp2.2/TicTacToe.dll
+/Users/alessandro/RiderProjects/TicTacToe/TicTacToe.AcceptanceTest/bin/Debug/netcoreapp2.2/TicTacToe.pdb
+/Users/alessandro/RiderProjects/TicTacToe/TicTacToe.AcceptanceTest/obj/Debug/netcoreapp2.2/TicTacToe.AcceptanceTest.csprojAssemblyReference.cache
+/Users/alessandro/RiderProjects/TicTacToe/TicTacToe.AcceptanceTest/obj/Debug/netcoreapp2.2/TicTacToe.AcceptanceTest.csproj.CoreCompileInputs.cache
+/Users/alessandro/RiderProjects/TicTacToe/TicTacToe.AcceptanceTest/obj/Debug/netcoreapp2.2/TicTacToe.AcceptanceTest.AssemblyInfoInputs.cache
+/Users/alessandro/RiderProjects/TicTacToe/TicTacToe.AcceptanceTest/obj/Debug/netcoreapp2.2/TicTacToe.AcceptanceTest.AssemblyInfo.cs
+/Users/alessandro/RiderProjects/TicTacToe/TicTacToe.AcceptanceTest/obj/Debug/netcoreapp2.2/TicTacToe.AcceptanceTest.csproj.CopyComplete
+/Users/alessandro/RiderProjects/TicTacToe/TicTacToe.AcceptanceTest/obj/Debug/netcoreapp2.2/TicTacToe.AcceptanceTest.dll
+/Users/alessandro/RiderProjects/TicTacToe/TicTacToe.AcceptanceTest/obj/Debug/netcoreapp2.2/TicTacToe.AcceptanceTest.pdb
