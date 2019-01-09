@@ -1,6 +1,6 @@
 namespace TicTacToe
 {
-    public class SeeBoard
+    public class SeeBoard : ISeeBoard
     {
         private readonly IBoardReader _boardReader;
 

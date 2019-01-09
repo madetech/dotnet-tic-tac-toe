@@ -1,6 +1,6 @@
 namespace TicTacToe
 {
-    public class PlacePiece
+    public class PlacePiece : IPlacePiece
     {
         private readonly IBoardWriter _boardWriter;
         private readonly IBoardReader _boardReader;
