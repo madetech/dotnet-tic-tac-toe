@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using System.Linq;
 using NUnit.Framework;
 
 namespace TicTacToe.ConsoleUI.Test
@@ -13,8 +12,6 @@ namespace TicTacToe.ConsoleUI.Test
         private Stack<string> input;
         private int? PlacedPieceX;
         private int? PlacedPieceY;
-        private List <int> PlacedPieceTypes { get; set; }        
-
         public void WriteLine(string line)
         {
             LineBuffer.Add(line);
@@ -30,9 +27,9 @@ namespace TicTacToe.ConsoleUI.Test
             return _seeBoardResponse;
         }
 
-        public void Execute(int pieceType, int x, int y)
+        public void Execute(int x, int y)
         {
-            PlacedPieceTypes.Add(pieceType);
+            
             PlacedPieceX = x;
             PlacedPieceY = y;
         }
@@ -57,7 +54,6 @@ namespace TicTacToe.ConsoleUI.Test
             
             PlacedPieceX = null;
             PlacedPieceY = null;
-            PlacedPieceTypes = new List<int>();
         }
 
         [Test]
@@ -188,16 +184,6 @@ namespace TicTacToe.ConsoleUI.Test
         }
 
         [Test]
-        public void PlacedPieceTypeIsEqualTo0()
-        {
-            input.Push("C2");
-            
-            Game.Start();
-            
-            Assert.AreEqual(0, PlacedPieceTypes.Single());        
-        }
-
-        [Test]
         public void WhenInvalidInput_ReTry()
         {
             input.Push("A1");
@@ -207,20 +193,6 @@ namespace TicTacToe.ConsoleUI.Test
 
             Assert.That(PlacedPieceX, Is.EqualTo(0));
             Assert.That(PlacedPieceY, Is.EqualTo(0));
-            Assert.AreEqual(0, PlacedPieceTypes.Single());
         }
-
-        [Test]
-        public void WhenANewPieceIsPlaced_MustBeDifferentFrom_ThePrevious()
-        {
-            input.Push("A1");
-            input.Push("A1");
-            input.Push("A1");
-            
-            Game.Start();
-
-            Assert.AreEqual(new List <int> {0, 1, 0}, PlacedPieceTypes);
-        }
-
     }
 }

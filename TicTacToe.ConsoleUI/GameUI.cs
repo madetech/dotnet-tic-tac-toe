@@ -1,4 +1,3 @@
-using System;
 using System.Text.RegularExpressions;
 
 namespace TicTacToe.ConsoleUI
@@ -9,7 +8,6 @@ namespace TicTacToe.ConsoleUI
         private readonly IConsole _console;
         private readonly ISeeBoard _seeBoard;
         private readonly IPlacePiece _placePiece;
-        private int CurrentPieceType;
 
         public GameUI(IConsole console,
             ISeeBoard seeBoard,
@@ -18,7 +16,6 @@ namespace TicTacToe.ConsoleUI
             _console = console;
             _seeBoard = seeBoard;
             _placePiece = placePiece;
-            CurrentPieceType = 0;
         }
 
         public interface IConsole
@@ -71,9 +68,7 @@ namespace TicTacToe.ConsoleUI
             var x = input[0] - AsciiValueA;
             var y = int.Parse(input[1].ToString()) - 1;
 
-            _placePiece.Execute(CurrentPieceType, x, y);
-
-            CurrentPieceType = CurrentPieceType == 0 ? 1 : 0;
+            _placePiece.Execute(x, y);
         }
 
         private static string Symbol(int?[,] board, int x, int y)
