@@ -15,6 +15,8 @@ namespace TicTacToe
         {
             var board = _boardReader.Fetch();
 
+            if (board.PieceAt(x, y) != null) return;
+            
             int pieceType = board.GetCurrentPieceType();
             
             _boardWriter.Write(board.NewBoardWithPieceAt(pieceType, x, y));

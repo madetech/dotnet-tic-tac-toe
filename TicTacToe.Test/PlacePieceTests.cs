@@ -56,6 +56,22 @@ namespace TicTacToe.Test
             
             Assert.IsNull(originalBoard.PieceAt(1, 0));
         }
+
+        [Test]
+        [TestCase(0, 0)]
+        [TestCase(1, 1)]
+        [TestCase(1, 2)]
+        public void MustIgnoreMoveOnExistingPiece(int x, int y)
+        {
+            var spy = new BoardWriterSpy();
+            var boardReaderStub = new PieceSetOriginBoardReaderStub(x, y);
+            
+            var placePiece = new PlacePiece(spy, boardReaderStub);
+            
+            placePiece.Execute(x, y);
+
+            Assert.That(spy.LastBoard, Is.Null);
+        }
     }
 
     public class EmptyBoardReaderStub : IBoardReader
@@ -68,9 +84,20 @@ namespace TicTacToe.Test
     
     public class PieceSetOriginBoardReaderStub : IBoardReader
     {
-        private readonly Board board = new Board()
-            .NewBoardWithPieceAt(0, 0, 0);
+        private readonly Board board;
 
+        public PieceSetOriginBoardReaderStub()
+        {
+            board = new Board()
+                .NewBoardWithPieceAt(0, 0, 0);
+        }
+            
+        public PieceSetOriginBoardReaderStub(int x, int y)
+        {
+            board = new Board()
+                .NewBoardWithPieceAt(0, x, y);
+        }
+        
         public Board Fetch()
         {
             return board;
