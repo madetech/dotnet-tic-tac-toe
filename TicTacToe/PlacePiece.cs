@@ -10,7 +10,14 @@ namespace TicTacToe
             _boardWriter = boardWriter;
             _boardReader = boardReader;
         }
-        
+
+        public void Execute(int x, int y)
+        {
+            var board = _boardReader.Fetch();
+                        
+            Execute(board.GetCurrentPieceType(), x , y);
+        }
+
         public void Execute(int pieceType, int x, int y)
         {
             var board = _boardReader.Fetch();

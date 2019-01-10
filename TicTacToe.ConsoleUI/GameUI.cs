@@ -9,6 +9,7 @@ namespace TicTacToe.ConsoleUI
         private readonly IConsole _console;
         private readonly ISeeBoard _seeBoard;
         private readonly IPlacePiece _placePiece;
+        private int CurrentPieceType;
 
         public GameUI(IConsole console,
             ISeeBoard seeBoard,
@@ -17,6 +18,7 @@ namespace TicTacToe.ConsoleUI
             _console = console;
             _seeBoard = seeBoard;
             _placePiece = placePiece;
+            CurrentPieceType = 0;
         }
 
         public interface IConsole
@@ -31,33 +33,47 @@ namespace TicTacToe.ConsoleUI
             {
                 var boardResponse = _seeBoard.Execute();
 
-                for (var x = 0; x < boardResponse.Board.GetLength(0); x++)
-                {
-                    var buffer = "";
-                    for (var y = 0; y < boardResponse.Board.GetLength(1); y++)
-                    {
-                        buffer += Symbol(boardResponse.Board, x, y);
-                    }
-
-                    _console.WriteLine(buffer);
-                }
+                PrintBoard(boardResponse.Board);
 
                 var input = _console.ReadLine();
-                if (input == "exit") return;
-                if (!Regex.IsMatch(input, "^[A-C][1-3]$")) continue;
-            
-                HandleInput(input);   
                 
-                _console.WriteLine(string.Empty);
+                if (input == "exit") return;
+                
+                if (IsInputValid(input))
+                {
+                    HandleInput(input);                    
+                    _console.WriteLine(string.Empty);   
+                }
+            }
+        }
+
+        private static bool IsInputValid(string input)
+        {
+            return Regex.IsMatch(input, "^[A-C][1-3]$");
+        }
+
+        private void PrintBoard(int?[,] board)
+        {
+            for (var x = 0; x < board.GetLength(0); x++)
+            {
+                var buffer = "";
+                for (var y = 0; y < board.GetLength(1); y++)
+                {
+                    buffer += Symbol(board, x, y);
+                }
+
+                _console.WriteLine(buffer);
             }
         }
 
         private void HandleInput(string input)
         {
-            int x = input[0] - AsciiValueA;
-            int y = int.Parse(input[1].ToString()) - 1;
+            var x = input[0] - AsciiValueA;
+            var y = int.Parse(input[1].ToString()) - 1;
 
-            _placePiece.Execute(0, x, y);
+            _placePiece.Execute(CurrentPieceType, x, y);
+
+            CurrentPieceType = CurrentPieceType == 0 ? 1 : 0;
         }
 
         private static string Symbol(int?[,] board, int x, int y)

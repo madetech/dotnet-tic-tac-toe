@@ -36,7 +36,7 @@ namespace TicTacToe.AcceptanceTest
                 response.Board
             );
         }
-        
+
         [Test]
         public void GivenAGameWithTwoPiecesPlaced_WhenISeeTheBoard_ThenTheBoardIsUpdatedCorrectly()
         {
@@ -53,6 +53,29 @@ namespace TicTacToe.AcceptanceTest
                 new int?[,]
                 {
                     {1, null, null},
+                    {1, null, null},
+                    {null, null, null}
+                },
+                response.Board
+            );
+        }
+        
+        [Test]
+        public void WhenANewPieceIsPlaced_MustBeDifferentFrom_ThePrevious()
+        {
+            var boardGateway = new InMemoryBoardGateway(); 
+            
+            var placePiece = new PlacePiece(boardGateway, boardGateway);
+            placePiece.Execute(0, 0);
+            placePiece.Execute( 0, 1);
+            
+            var seeBoard = new SeeBoard(boardGateway);
+            var response = seeBoard.Execute();
+           
+            Assert.AreEqual(
+                new int?[,]
+                {
+                    {0, null, null},
                     {1, null, null},
                     {null, null, null}
                 },
