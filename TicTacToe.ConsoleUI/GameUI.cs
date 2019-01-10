@@ -32,6 +32,13 @@ namespace TicTacToe.ConsoleUI
 
                 PrintBoard(boardResponse.Board);
 
+                if (boardResponse.Winner != null)
+                {
+                    _console.WriteLine($"Congratulations {(boardResponse.Winner == 0 ? "o" : "x")}! You have won!");
+
+                    return;
+                }
+
                 var input = _console.ReadLine();
                 
                 if (input == "exit") return;

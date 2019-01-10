@@ -29,7 +29,6 @@ namespace TicTacToe.ConsoleUI.Test
 
         public void Execute(int x, int y)
         {
-            
             PlacedPieceX = x;
             PlacedPieceY = y;
         }
@@ -180,6 +179,29 @@ namespace TicTacToe.ConsoleUI.Test
                     "---"
                 }, 
                 LineBuffer
+            );
+        }
+
+        [Test]
+        [TestCase(0, "Congratulations o! You have won!")]
+        [TestCase(1, "Congratulations x! You have won!")]
+        public void CanShowWinMessage(int winner, string expectedWinMessage)
+        {
+            input = new Stack<string>();
+            
+            _seeBoardResponse.Board = new int?[,]
+            {
+                {0, 1, 1},
+                {null, 0, 1},
+                {null, null, 0}
+            };
+            _seeBoardResponse.Winner = winner;
+
+            Game.Start();
+
+            Assert.AreEqual(
+                new List<string> {"oxx", "-ox", "--o", expectedWinMessage}
+                , LineBuffer
             );
         }
 
