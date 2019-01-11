@@ -1,3 +1,5 @@
+using System;
+using System.Linq;
 using System.Text.RegularExpressions;
 
 namespace TicTacToe.ConsoleUI
@@ -31,13 +33,15 @@ namespace TicTacToe.ConsoleUI
                 var boardResponse = _seeBoard.Execute();
 
                 PrintBoard(boardResponse.Board);
-
+                
                 if (boardResponse.Winner != null)
                 {
                     _console.WriteLine($"Congratulations {(boardResponse.Winner == 0 ? "o" : "x")}! You have won!");
 
                     return;
                 }
+
+                PrintCurrentPlayer(boardResponse.Board);
 
                 var input = _console.ReadLine();
                 
@@ -51,16 +55,25 @@ namespace TicTacToe.ConsoleUI
             }
         }
 
+        private void PrintCurrentPlayer(int?[,] board)
+        {
+            var flattenedBoard = board.Cast<int?>().ToArray();
+            var currentPlayer = flattenedBoard.Count(x => x != null) % 2;
+
+            _console.WriteLine($"Player: {(currentPlayer == 0 ? "o" : "x")}");
+        }
+
         private static bool IsInputValid(string input)
         {
-            return Regex.IsMatch(input, "^[A-C][1-3]$");
+            return Regex.IsMatch(input, "^[a-cA-C][1-3]$");
         }
 
         private void PrintBoard(int?[,] board)
         {
+            _console.WriteLine(" ABC");
             for (var x = 0; x < board.GetLength(0); x++)
             {
-                var buffer = "";
+                var buffer = (x+1).ToString();
                 for (var y = 0; y < board.GetLength(1); y++)
                 {
                     buffer += Symbol(board, x, y);
@@ -72,7 +85,7 @@ namespace TicTacToe.ConsoleUI
 
         private void HandleInput(string input)
         {
-            var x = input[0] - AsciiValueA;
+            var x = input.ToUpper()[0] - AsciiValueA;
             var y = int.Parse(input[1].ToString()) - 1;
 
             _placePiece.Execute(x, y);

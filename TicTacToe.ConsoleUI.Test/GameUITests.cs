@@ -61,7 +61,13 @@ namespace TicTacToe.ConsoleUI.Test
             Game.Start();
 
             Assert.AreEqual(
-                new List<string> {"---", "---", "---"}
+                new List<string> {" ABC", 
+                                           "1---", 
+                                           "2---", 
+                                           "3---",
+                                           "Player: o"                                           
+                                           
+                }
                 , LineBuffer
             );
         }
@@ -72,9 +78,14 @@ namespace TicTacToe.ConsoleUI.Test
             _seeBoardResponse.Board[1, 2] = 1;
 
             Game.Start();
-
+            
             Assert.AreEqual(
-                new List<string> {"---", "--x", "---"}
+                new List<string> {" ABC", 
+                    "1---", 
+                    "2--x", 
+                    "3---",
+                    "Player: x"
+                }
                 , LineBuffer
             );
         }
@@ -87,7 +98,12 @@ namespace TicTacToe.ConsoleUI.Test
             Game.Start();
 
             Assert.AreEqual(
-                new List<string> {"---", "--o", "---"}
+                new List<string> {" ABC", 
+                    "1---", 
+                    "2--o", 
+                    "3---",
+                    "Player: x"
+                }
                 , LineBuffer
             );
         }
@@ -101,9 +117,14 @@ namespace TicTacToe.ConsoleUI.Test
             };
 
             Game.Start();
-
+            
             Assert.AreEqual(
-                new List<string> {"xxx", "xxx", "xxx"}
+                new List<string> {" ABC", 
+                    "1xxx", 
+                    "2xxx", 
+                    "3xxx",
+                    "Player: x"
+                }
                 , LineBuffer
             );
         }
@@ -119,9 +140,14 @@ namespace TicTacToe.ConsoleUI.Test
             };
 
             Game.Start();
-
+            
             Assert.AreEqual(
-                new List<string> {"ooo", "ooo", "ooo"}
+                new List<string> {" ABC", 
+                    "1ooo", 
+                    "2ooo", 
+                    "3ooo",
+                    "Player: x"
+                }
                 , LineBuffer
             );
         }
@@ -147,12 +173,11 @@ namespace TicTacToe.ConsoleUI.Test
             Assert.That(PlacedPieceX, Is.EqualTo(1));
             Assert.That(PlacedPieceY, Is.EqualTo(1));
         }
-        
-        
+
         [Test]
-        public void CanPlaceAPiece3()
+        public void CanPlaceAPieceWithLowerCaseNotation()
         {
-            input.Push("C2");
+            input.Push("c2");
 
             Game.Start();
 
@@ -166,19 +191,22 @@ namespace TicTacToe.ConsoleUI.Test
             input.Push("C2");
 
             Game.Start();
-
+            
             Assert.AreEqual(
-                new List<string>
-                {
-                    "---", 
-                    "---", 
-                    "---", 
+                new List<string> {
+                    " ABC", 
+                    "1---", 
+                    "2---", 
+                    "3---",
+                    "Player: o",
                     string.Empty,
-                    "---", 
-                    "---", 
-                    "---"
-                }, 
-                LineBuffer
+                    " ABC", 
+                    "1---", 
+                    "2---", 
+                    "3---",
+                    "Player: o"
+                }
+                , LineBuffer
             );
         }
 
@@ -200,7 +228,12 @@ namespace TicTacToe.ConsoleUI.Test
             Game.Start();
 
             Assert.AreEqual(
-                new List<string> {"oxx", "-ox", "--o", expectedWinMessage}
+                new List<string> {" ABC", 
+                    "1oxx", 
+                    "2-ox", 
+                    "3--o",
+                    expectedWinMessage
+                }
                 , LineBuffer
             );
         }

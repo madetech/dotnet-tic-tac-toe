@@ -4,11 +4,17 @@ namespace TicTacToe.AcceptanceTest
 {
     public class TicTacToeTests
     {
+        private InMemoryBoardGateway boardGateway;
+
+        [SetUp]
+        public void SetUp()
+        {
+            boardGateway = new InMemoryBoardGateway();
+        }
+
         [Test]
         public void GivenANewGame_WhenISeeTheBoard_ItMustBeEmpty()
         {
-            var boardGateway = new InMemoryBoardGateway();
-
             var seeBoard = new SeeBoard(boardGateway);
             var response = seeBoard.Execute();
 
@@ -19,8 +25,6 @@ namespace TicTacToe.AcceptanceTest
         [Test]
         public void GivenAGameWithOnePiecePlaced_WhenISeeTheBoard_ThenTheBoardIsUpdatedCorrectly()
         {
-            var boardGateway = new InMemoryBoardGateway();
-
             var placePiece = new PlacePiece(boardGateway, boardGateway);
             placePiece.Execute(0, 0);
 
@@ -41,8 +45,6 @@ namespace TicTacToe.AcceptanceTest
         [Test]
         public void GivenAGameWithTwoPiecesPlaced_WhenISeeTheBoard_ThenTheBoardIsUpdatedCorrectly()
         {
-            var boardGateway = new InMemoryBoardGateway();
-
             var placePiece = new PlacePiece(boardGateway, boardGateway);
             placePiece.Execute(0, 0);
             placePiece.Execute(0, 1);
@@ -64,8 +66,6 @@ namespace TicTacToe.AcceptanceTest
         [Test]
         public void WhenANewPieceIsPlaced_MustBeDifferentFrom_ThePrevious()
         {
-            var boardGateway = new InMemoryBoardGateway();
-
             var placePiece = new PlacePiece(boardGateway, boardGateway);
             placePiece.Execute(0, 0);
             placePiece.Execute(0, 1);
@@ -87,8 +87,6 @@ namespace TicTacToe.AcceptanceTest
         [Test]
         public void CanNotOverwriteExistingPiece()
         {
-            var boardGateway = new InMemoryBoardGateway();
-
             var placePiece = new PlacePiece(boardGateway, boardGateway);
             placePiece.Execute(0, 0);
             
@@ -113,8 +111,6 @@ namespace TicTacToe.AcceptanceTest
         [Test]
         public void CanDetectAWinForOHorizontally()
         {
-            var boardGateway = new InMemoryBoardGateway();
-
             var placePiece = new PlacePiece(boardGateway, boardGateway);
             placePiece.Execute(0, 0);
             placePiece.Execute(0, 1);
@@ -133,8 +129,6 @@ namespace TicTacToe.AcceptanceTest
         [Test]
         public void CanDetectAWinForXHorizontally()
         {
-            var boardGateway = new InMemoryBoardGateway();
-
             var placePiece = new PlacePiece(boardGateway, boardGateway);
             placePiece.Execute(0, 0);
             placePiece.Execute(0, 1);
@@ -154,8 +148,6 @@ namespace TicTacToe.AcceptanceTest
         [Test]
         public void CanDetectAWinForOVertically()
         {
-            var boardGateway = new InMemoryBoardGateway();
-
             var placePiece = new PlacePiece(boardGateway, boardGateway);
             placePiece.Execute(0, 0);
             placePiece.Execute(1, 0);
@@ -174,8 +166,6 @@ namespace TicTacToe.AcceptanceTest
         [Test]
         public void CanDetectAWinForXVertically()
         {
-            var boardGateway = new InMemoryBoardGateway();
-
             var placePiece = new PlacePiece(boardGateway, boardGateway);
             placePiece.Execute(0, 0);
             placePiece.Execute(1, 0);
@@ -195,8 +185,6 @@ namespace TicTacToe.AcceptanceTest
         [Test]
         public void CanDetectAWinForOMainDiagonally()
         {
-            var boardGateway = new InMemoryBoardGateway();
-
             var placePiece = new PlacePiece(boardGateway, boardGateway);
             placePiece.Execute(0, 0);
             placePiece.Execute(1, 0);
@@ -215,8 +203,6 @@ namespace TicTacToe.AcceptanceTest
         [Test]
         public void CanDetectAWinForOAntiDiagonally()
         {
-            var boardGateway = new InMemoryBoardGateway();
-
             var placePiece = new PlacePiece(boardGateway, boardGateway);
             placePiece.Execute(2, 0);
             placePiece.Execute(1, 0);
@@ -235,8 +221,6 @@ namespace TicTacToe.AcceptanceTest
         [Test]
         public void CanDetectAWinForXDiagonally()
         {
-            var boardGateway = new InMemoryBoardGateway();
-
             var placePiece = new PlacePiece(boardGateway, boardGateway);
             placePiece.Execute(1, 0);
             placePiece.Execute(0, 0);
@@ -256,8 +240,6 @@ namespace TicTacToe.AcceptanceTest
         [Test]
         public void CanDetectAWinForXAntiDiagonally()
         {
-            var boardGateway = new InMemoryBoardGateway();
-
             var placePiece = new PlacePiece(boardGateway, boardGateway);
             placePiece.Execute(1, 0);
             placePiece.Execute(2, 0);
