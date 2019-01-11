@@ -113,6 +113,57 @@ namespace TicTacToe.Test
             
             Assert.That(response.Winner, Is.EqualTo(pieceType));
         }
+
+        [Test]
+        public void CanDetectIfTheGameHasEnded()
+        {
+            var seeBoard = new SeeBoard(new AntidiagonalWinStub(0));
+
+            var response = seeBoard.Execute();
+            
+            Assert.That(response.HasGameEnded, Is.True);
+        }
+        
+        [Test]
+        public void CanDetectIfTheGameHasNotEnded()
+        {
+            var boardGateway = new BoardReaderStub(); 
+
+            var seeBoard = new SeeBoard(boardGateway);
+            var response = seeBoard.Execute();
+           
+            Assert.That(response.HasGameEnded, Is.False);
+        }
+
+        [Test]
+        public void CanDetectIfTheGameHasEndedWithATie()
+        {
+            var seeBoard = new SeeBoard(new TieStub());
+            
+            var response = seeBoard.Execute();
+            
+            Assert.That(response.HasGameEnded, Is.True);
+            Assert.That(response.Winner, Is.Null);
+        }
+    }
+
+    public class TieStub : IBoardReader
+    {
+        public Board Fetch()
+        {
+            return new Board()
+                .NewBoardWithPieceAt(1, 0, 0)
+                .NewBoardWithPieceAt(0, 1, 0)
+                .NewBoardWithPieceAt(1, 2, 0)
+                
+                .NewBoardWithPieceAt(0, 0, 1)
+                .NewBoardWithPieceAt(1, 1, 1)
+                .NewBoardWithPieceAt(0, 2, 1)
+
+                .NewBoardWithPieceAt(0, 0, 2)
+                .NewBoardWithPieceAt(1, 1, 2)
+                .NewBoardWithPieceAt(0, 2, 2);
+        }
     }
 
     public class DiagonalWinStub : IBoardReader

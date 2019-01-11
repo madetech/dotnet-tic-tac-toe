@@ -255,6 +255,31 @@ namespace TicTacToe.AcceptanceTest
 
             Assert.That(response.Winner, Is.EqualTo(1));
         }
+
+        [Test]
+        public void GivenAllThePiecesArePlaced_AndThereIsNoWinner_CanDetectATie()
+        {
+            var placePiece = new PlacePiece(boardGateway, boardGateway);
+            placePiece.Execute(0, 2);
+            placePiece.Execute(1, 2);
+            
+            placePiece.Execute(2, 2);
+            placePiece.Execute(1, 1);
+
+            placePiece.Execute(0, 1);
+            placePiece.Execute(0, 0);
+
+            placePiece.Execute(1, 0);
+            placePiece.Execute(2, 0);
+
+            placePiece.Execute(2, 1);
+
+            var seeBoard = new SeeBoard(boardGateway);
+            var response = seeBoard.Execute();
+
+            Assert.That(response.Winner, Is.Null);
+            Assert.That(response.HasGameEnded, Is.True);
+        }
     }
 
     public class InMemoryBoardGateway : IBoardReader, IBoardWriter

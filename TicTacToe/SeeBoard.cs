@@ -28,7 +28,9 @@ namespace TicTacToe
             var response = new SeeBoardResponse
             {
                 Board = board.Pieces,
-                Winner = presentableWinner
+                Winner = presentableWinner,
+                HasGameEnded = board.Pieces.Cast<int?>().ToArray().Count(x => x != null) == 9 || 
+                               presentableWinner != null
             };
 
             return response;

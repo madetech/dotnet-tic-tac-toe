@@ -224,7 +224,8 @@ namespace TicTacToe.ConsoleUI.Test
                 {null, null, 0}
             };
             _seeBoardResponse.Winner = winner;
-
+            _seeBoardResponse.HasGameEnded = true;
+                
             Game.Start();
 
             Assert.AreEqual(
@@ -238,6 +239,30 @@ namespace TicTacToe.ConsoleUI.Test
             );
         }
 
+        [Test]
+        public void CanShowTieMessage()
+        {
+            _seeBoardResponse.Board = new int?[,]
+            {
+                {1, 0, 1},
+                {0, 1, 0},
+                {0, 1, 0}
+            };
+            _seeBoardResponse.HasGameEnded= true;
+
+            Game.Start();
+
+            Assert.AreEqual(
+                new List<string> {" ABC", 
+                    "1xox", 
+                    "2oxo", 
+                    "3oxo",
+                    "It's a tie. Game over!"
+                }
+                , LineBuffer
+            );
+        }
+        
         [Test]
         public void WhenInvalidInput_ReTry()
         {
